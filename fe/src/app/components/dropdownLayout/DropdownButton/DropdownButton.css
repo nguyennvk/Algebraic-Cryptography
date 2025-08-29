@@ -1,0 +1,35 @@
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 3rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+.dropdown-btn:hover {
+    color: rgb(49, 148, 255);
+    box-shadow: rgba(255, 255, 255) 0px 0px 10px;
+}
+
+.dropdown-icon{
+    margin-left: 0.5rem;
+}
+
+.dropdown-btn-open {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 3rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-color: rgb(0, 136, 255);
+    border-width: 1px;
+    cursor: pointer;
+  }
+
+  

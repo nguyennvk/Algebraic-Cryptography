@@ -1,0 +1,13 @@
+.dropdown-item {
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.5rem;
+
+  }
+
+.dropdown-item:hover {
+    color: rgb(49, 148, 255);
+  }
+  

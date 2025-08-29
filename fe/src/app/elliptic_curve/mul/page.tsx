@@ -1,0 +1,129 @@
+'use client'
+import React from "react";
+import { useState, useEffect } from "react";
+import LatexText from "@/components/textLikeComponents/LatexText";
+import SolveButton from "@/components/button/SolveButton";
+import dotenv from 'dotenv';
+import beautifyExpression from "@src/utils/BeautifyExpression";
+dotenv.config();
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5555';
+
+function isDigit(str: string) {
+    return /^\d+$/.test(str) || str === "";
+}
+
+import SimpleInput from "@/components/inputLikeComponents/SimpleInput";
+import { error } from "console";
+export default function CarmichaelFuncPage() {
+    const [a, setA] = useState("");
+    const [b, setB] = useState("");
+    const [p, setP] = useState("");
+    const [x, setX] = useState("");
+    const [y, setY] = useState("");
+    const [k, setK] = useState("");
+    const [equation, setEquation] = useState(false);
+    const [showSolution, setShowSolution] = useState(false);
+    const [haveSolution, setHaveSolution] = useState(true);
+    const [solution, setSolution] = useState({"result": []});
+    const [error, setError] = useState("");
+
+    const handleAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setA(value);
+            setShowSolution(false);
+        }
+    };
+    const handleBChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setB(value);
+            setShowSolution(false);
+        }
+    };
+    const handlePChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setP(value);
+            setShowSolution(false);
+        }
+    };
+    const handleXChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setX(value);
+            setShowSolution(false);
+        }
+    };
+    const handleYChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setY(value);
+            setShowSolution(false);
+        }
+    };
+    const handleKChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (isDigit(value)) {
+            setK(value);
+            setShowSolution(false);
+        }
+    };
+    useEffect(
+        () => {
+            if (a&&p&&b&&x&&y){
+                setEquation(true)
+            } else {
+                setEquation(false);
+                setShowSolution(false);
+            }
+        }, [a, p, b, x, y]
+    )
+
+    return (
+        <div>
+            <div className="flex flex-col items-center">
+                <h1 className="text-4xl">Point scalar multiplication on an Elliptic Curve</h1>
+                <p className="text-lg mt-4">
+                    Return k(x, y) on an Elliptic Curve <span>{<LatexText expression="y^2=x^3+ax+b"></LatexText>}</span> lives 
+                                        in <span>{<LatexText expression="F_p"></LatexText>}</span> 
+                </p>
+                <SimpleInput value={a} name="a" onChange={handleAChange}/>
+                <SimpleInput value={b} name="b" onChange={handleBChange}/>
+                <SimpleInput value={p} name="p" onChange={handlePChange}/>
+                <SimpleInput value={x} name="x" onChange={handleXChange}/>
+                <SimpleInput value={y} name="y" onChange={handleYChange}/>
+                <SimpleInput value={k} name="k" onChange={handleKChange}/>
+                <div className="mt-5" style={{display: equation ? "block" : "none"}}>
+                    <SolveButton onClick={() => {
+                            fetch(`${BACKEND_URL}/elliptic_curve/points_mul?a=${a}&b=${b}&p=${p}&x=${x}&y=${y}&k=${k}`)
+                            .then(async (res) => {
+                                if (!res.ok) {
+                                    setHaveSolution(false);
+                                    setShowSolution(true);
+                                    setError((await res.json()).error)
+                                }
+                                else{
+                                    setSolution(await res.json());
+                                    setShowSolution(true);
+                                    setHaveSolution(true);
+                                }
+                                })
+                            .catch((error) => {
+                                console.error("Error fetching data:", error);
+                            });
+                        }}/>
+                </div>
+                <div className="mt-5" style={{display: showSolution&&haveSolution ? "block" : "none"}}>
+                    <p>Result: <span>{<LatexText expression={`(${solution.result})`}></LatexText>}</span></p>
+                </div>
+                <div style={{display: showSolution&&!haveSolution ? "block" : "none"}}>
+                    <p className="flex justify-center mt-4 text-red-500">There is no solution to the equation. {error}</p>
+                </div>
+
+            </div>
+        </div>
+        
+    );
+}
