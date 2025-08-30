@@ -53,4 +53,4 @@ app.register_blueprint(elliptic_curve_signature)
 app.register_blueprint(autofill_bp)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5555, debug=True)
+    app.run(host="0.0.0.0", port=5555, debug=False)

@@ -6,7 +6,7 @@ interface DropdownItemProps {
     onClick?: () => void;
 }
 
-export default function({children, onClick}: DropdownItemProps) {
+export default function DropdownItem({children, onClick}: DropdownItemProps) {
     return (
         <div className="dropdown-item" onClick={onClick}>
             {children}

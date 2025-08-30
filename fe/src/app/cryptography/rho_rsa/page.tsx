@@ -62,7 +62,7 @@ export default function PowerModPage() {
             <div className="flex flex-col items-center">
                 <h1 className="text-4xl">RSA (Integer Factorisation Problem)</h1>
                 <p className="text-lg mt-4">
-                    Crack RSA problem with not large number using Pollard’s Rho algorithm with steps and customized
+                    Crack RSA problem with not large number using Pollard&apos;s Rho algorithm with steps and customized
                     polynomial.
                 </p>
                 <SimpleInput value={n} name="n" onChange={handleNChange}/>
@@ -107,7 +107,7 @@ export default function PowerModPage() {
                 {haveSolution && solution["steps"] !== null &&
                 <div className="w-screen ml-10" style={{display: showSolution&&haveSolution ? "block" : "none"}}>
                     <div>
-                        <p>Consider the adjusted Pollard's method:</p>
+                        <p>Consider the adjusted Pollard&apos;s method:</p>
                         <table className="border-collapse border border-gray-400">
                             <thead>
                                 <tr>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import LatexText from "@/components/textLikeComponents/LatexText";
 import SolveButton from "@/components/button/SolveButton";
 import dotenv from 'dotenv';
-import beautifyExpression from "@src/utils/BeautifyExpression";
 dotenv.config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5555';
@@ -76,7 +75,7 @@ export default function CarmichaelFuncPage() {
     return (
         <div>
             <div className="flex flex-col items-center">
-                <h1 className="text-4xl">Point's order on an Elliptic Curve</h1>
+                <h1 className="text-4xl">Point&apos;s order on an Elliptic Curve</h1>
                 <p className="text-lg mt-4">
                     Return the order of (x, y) on an Elliptic Curve <span>{<LatexText expression="y^2=x^3+ax+b"></LatexText>}</span> lives 
                                         in <span>{<LatexText expression="F_p"></LatexText>}</span> 

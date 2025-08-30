@@ -60,7 +60,7 @@ export default function BezoutPage() {
     return (
         <div>
             <div className="flex flex-col items-center">
-                <h1 className="text-4xl">Bezout's Identity</h1>
+                <h1 className="text-4xl">Bezout&apos;s Identity</h1>
                 <p className="relative z-0 text-lg mt-4">
                     Please enter a, b, c as the equation <span>{<LatexText expression="ax+by=c"></LatexText>}</span>.
                 </p>

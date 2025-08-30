@@ -45,7 +45,9 @@ export default function Dropdown({ buttonText, items, routes}: DropdownProps) {
 
     return (
         <div ref={dropdownRef} className="dropdown">
-            <DropdownButton open={isOpen} onClick={toggleDropdown} children={buttonText}/>
+            <DropdownButton open={isOpen} onClick={toggleDropdown}>
+              {buttonText}
+            </DropdownButton>
             <DropdownContent open={isOpen} items={itemsComponents}/>
         </div>
     )

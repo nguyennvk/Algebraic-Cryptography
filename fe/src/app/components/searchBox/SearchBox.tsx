@@ -19,7 +19,7 @@ export default function SearchBox() {
         fetch(`${BACKEND_URL}/autofill?word=${searchTerm}`).then(res => res.json()).then(data => {
             setAutoItem(Object.keys(data).map((item, index) => {
                 return (
-                    <AutofillItem key={index} children={item} onClick={() => router.push(data[item][0])}></AutofillItem>
+                    <AutofillItem key={index} onClick={() => router.push(data[item][0])}>item</AutofillItem>
                 )
             }
             ));
@@ -34,7 +34,7 @@ export default function SearchBox() {
     return (
     <div className="search-box">
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <AutofillContent children={autoItem}></AutofillContent>
+        <AutofillContent>autoItem</AutofillContent>
     </div>
     )
 }

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import LatexText from "@/components/textLikeComponents/LatexText";
 import SolveButton from "@/components/button/SolveButton";
 import dotenv from 'dotenv';
-import {parsePoly, extractPoly, polyToLatex} from "@src/utils/polynomialFunction";
+import { extractPoly, polyToLatex} from "@src/utils/polynomialFunction";
 dotenv.config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5555';

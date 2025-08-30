@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import LatexText from "@/components/textLikeComponents/LatexText";
 import SolveButton from "@/components/button/SolveButton";
 import dotenv from 'dotenv';
-import beautifyExpression from "@src/utils/BeautifyExpression";
 dotenv.config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5555';
@@ -65,7 +64,7 @@ export default function PowerModPage() {
             <div className="flex flex-col items-center">
                 <h1 className="text-4xl">DLP (Discrete Logarithm Problem)</h1>
                 <p className="text-lg mt-4">
-                    Crack DLP problem with not large number using Shank's Babystep-Giantstep algorithm.<br></br>
+                    Crack DLP problem with not large number using Shank&apos;s Babystep-Giantstep algorithm.<br></br>
                     Returning <span>{<LatexText expression="n"></LatexText>}</span> such that <span>{<LatexText expression="g^n \equiv y \text{ mod } p"></LatexText>}</span> and&nbsp;
                     <span>{<LatexText expression="i, j"></LatexText>}</span> as index in Baby and Giant step, respectively.
 
