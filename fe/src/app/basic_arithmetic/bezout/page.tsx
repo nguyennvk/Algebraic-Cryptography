@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import LatexText from "@/components/textLikeComponents/LatexText";
 import SolveButton from "@/components/button/SolveButton";
 import dotenv from 'dotenv';
-import beautifyExpression from "@src/utils/BeautifyExpression";
+import beautifyExpression from "@src/utils/beautifyExpression";
 dotenv.config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5555';
@@ -25,19 +25,22 @@ export default function BezoutPage() {
     const [haveSolution, setHaveSolution] = useState(true);
     const [error, setError] = useState("");
 
-    const handleAChange = (value: string) => {
+    const handleAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         if (isDigit(value)) {
             setA(value);
             setShowSolution(false);
         }
     };
-    const handleBChange = (value: string) => {
+    const handleBChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         if (isDigit(value)) {
             setB(value);
             setShowSolution(false);
         }
     };
-    const handleCChange = (value: string) => {
+    const handleCChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         if (isDigit(value)) {
             setC(value);
             setShowSolution(false);
