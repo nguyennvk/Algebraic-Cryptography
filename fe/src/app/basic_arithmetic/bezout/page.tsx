@@ -25,22 +25,19 @@ export default function BezoutPage() {
     const [haveSolution, setHaveSolution] = useState(true);
     const [error, setError] = useState("");
 
-    const handleAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const handleAChange = (value: string) => {
         if (isDigit(value)) {
             setA(value);
             setShowSolution(false);
         }
     };
-    const handleBChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const handleBChange = (value: string) => {
         if (isDigit(value)) {
             setB(value);
             setShowSolution(false);
         }
     };
-    const handleCChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const handleCChange = (value: string) => {
         if (isDigit(value)) {
             setC(value);
             setShowSolution(false);
