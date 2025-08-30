@@ -251,12 +251,10 @@ def shank_dlp(g, y, p):
     m = math.isqrt(p) + 1
     L1 = {pow(g, j, p): j for j in range(m+1)}
     L2 = {(y * pow(g, -i*m, p))%p: i for i in range(m+1)}
-
     map_list2 = {val: idx for idx, val in enumerate(L2)}
     for idx1, val in enumerate(L1):
         if val in map_list2:
             return idx1, map_list2[val]  # return indices from list1 and list2
-    
     return None
 
 
@@ -289,10 +287,10 @@ def add_elliptic_curve(P: tuple, Q: tuple, a: int, b: int, p=math.inf) -> tuple:
     O = (math.inf, math.inf)  # Point at infinity
     x1, y1 = P
     x2, y2 = Q
-    if P == ("\infty", "\infty") or Q == ("\infty", "\infty"): return ("\infty", "\infty")
+    if P == ("\\infty", "\\infty") or Q == ("\\infty", "\\infty"): return ("\\infty", "\\infty")
     if P == Q:
         if P == O:
-            return O
+            return ("\\infty", "\\infty")
         else:
             x3 = 3*x1**2 + a
             i = pow(2*y1, -1, p) if p != math.inf else pow(2*y1, -1)
@@ -306,14 +304,13 @@ def add_elliptic_curve(P: tuple, Q: tuple, a: int, b: int, p=math.inf) -> tuple:
             y3 = (m*(x1-x3) - y1) % p if p != math.inf else (m*(x1-x3) - y1)
             return (x3, y3)
         elif P != O and Q != O and x1 == x2:
-            return ("\infty", "\infty")
+            return ("\\infty", "\\infty")
         elif P == O and Q != O:
             return Q
         elif P != O and Q == O:
             return P
         else:
-            return ("\infty", "\infty")
-
+            return ("\\infty", "\\infty")
 
 def order_elliptic_curve(P: tuple, a: int, b: int, p: int) -> int:
     """
@@ -331,7 +328,7 @@ def order_elliptic_curve(P: tuple, a: int, b: int, p: int) -> int:
     O = (math.inf, math.inf)  # Point at infinity
     count = 1
     current_point = P
-    while current_point != O:
+    while current_point != O and current_point != ("\\infty", "\\infty"):
         count += 1
         current_point = add_elliptic_curve(current_point, P, a, b, p)
     return count
