@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import LatexText from "@/components/textLikeComponents/LatexText";
-
+// sadhfgasjhd
 export default function Home() {
     return (
       <div>

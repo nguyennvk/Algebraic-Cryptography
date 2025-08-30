@@ -13,6 +13,15 @@ function isDigit(str: string) {
     return /^\d+$/.test(str) || str === "";
 }
 
+type AddElement = Record<number, number>;
+type ProdElement = Record<number, number>;
+
+export interface ResponseData {
+  add: AddElement[][];                       // 2D array of {0,1}
+  elements: Record<number, number>[];      // object with string keys
+  irreducible_poly: Record<number, number>;  // object with string keys mapping to number
+  prod: ProdElement[][];                     // 2D array of {0,1,2}
+}
 
 import SimpleInput from "@/components/inputLikeComponents/SimpleInput";
 import { error } from "console";
@@ -22,13 +31,13 @@ export default function PowerModPage() {
     const [equation, setEquation] = useState(false);
     const [showSolution, setShowSolution] = useState(false);
     const [haveSolution, setHaveSolution] = useState(true);
-    const [solution, setSolution] = useState({
-        "add": [], 
-        "prod": [],
-        "elements": {},
-        "irreducible_poly": {}
+    const [solution, setSolution] = useState<ResponseData>({
+        add: [], 
+        prod: [],
+        elements: [],
+        irreducible_poly: {}
     });
-    const [elements, setElements] = useState([]);
+    const [elements, setElements] = useState<string[][]>([]);
     const [error, setError] = useState("");
 
     const handlePChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,12 +86,11 @@ export default function PowerModPage() {
                                 setError((await res.json()).error)
                             }
                             else{
-                                const data = await res.json()
+                                const data: ResponseData = await res.json()
                                 setSolution(data);
                                 setShowSolution(true);
                                 setHaveSolution(true);
                                 setElements(data["elements"].map(n=>[polyToLatex(n)]));
-                                console.log(data);
                             }
                             })
                             .catch((error) => {

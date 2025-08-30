@@ -15,7 +15,7 @@ interface DropdownProps {
 
 export default function Dropdown({ buttonText, items, routes}: DropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef();
+    const dropdownRef = useRef(null);
     const router = useRouter();
 
     const toggleDropdown = () => {

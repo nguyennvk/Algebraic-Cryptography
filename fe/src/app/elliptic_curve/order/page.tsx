@@ -98,6 +98,7 @@ export default function CarmichaelFuncPage() {
                                     setSolution(await res.json());
                                     setShowSolution(true);
                                     setHaveSolution(true);
+                                    console.log(solution);
                                 }
                                 })
                             .catch((error) => {

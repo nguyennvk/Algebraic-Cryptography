@@ -67,18 +67,19 @@ export function polyToLatex(obj: Record<number, number>){
     let latex = "";
     let add_term = "";
     for (const key of Object.keys(obj).sort().reverse()) {
-        if (obj[key] !== 0){
-            if (key == 0) add_term = `${obj[key]}`;
-            else if (key == 1) {
-                if (obj[key] == 1) add_term = 'x'
-                else if (obj[key] == -1) add_term = '-x'
-                else add_term = `${obj[key]}x`
+        const k = Number(key); 
+        if (obj[k] !== 0){
+            if (k == 0) add_term = `${obj[k]}`;
+            else if (k == 1) {
+                if (obj[k] == 1) add_term = 'x'
+                else if (obj[k] == -1) add_term = '-x'
+                else add_term = `${obj[k]}x`
             }
-            else if (obj[key] == 1) add_term = `x^${key}`
+            else if (obj[k] == 1) add_term = `x^${key}`
             else {
-                if (obj[key] == 1) add_term = `x^${key}`
-                else if (obj[key] == -1) add_term = `-x^${key}`
-                else add_term = `${obj[key]}x^${key}`
+                if (obj[k] == 1) add_term = `x^${key}`
+                else if (obj[k] == -1) add_term = `-x^${key}`
+                else add_term = `${obj[k]}x^${key}`
             }
             if (add_term.charAt(0) != "-"){
                 add_term = "+"+add_term;

@@ -12,6 +12,20 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:555
 function isDigit(str: string) {
     return /^\d+$/.test(str) || str === "";
 }
+// inner object: maps string -> number
+type InnerMap = Record<string, number>;
+
+// refined/raw: maps string -> InnerMap
+type NestedMap = Record<string, InnerMap>;
+
+interface Solution {
+  k: number | null;
+  raw: NestedMap;
+  gcd: number | null;
+  refined: NestedMap;
+  x: number | null;
+  y: number | null;
+}
 
 import SimpleInput from "@/components/inputLikeComponents/SimpleInput";
 import { error } from "console";
@@ -20,7 +34,14 @@ export default function BezoutPage() {
     const [b, setB] = useState("");
     const [c, setC] = useState("");
     const [equation, setEquation] = useState(false);
-    const [solution, setSolution] = useState({"k": null, "raw": {}, "gcd": null, "refined": {}, "x": null, "y": null});
+    const [solution, setSolution] = useState<Solution>({
+    k: null,
+    raw: {},
+    gcd: null,
+    refined: {},
+    x: null,
+    y: null,
+    });
     const [showSolution, setShowSolution] = useState(false);
     const [haveSolution, setHaveSolution] = useState(true);
     const [error, setError] = useState("");
@@ -115,11 +136,19 @@ export default function BezoutPage() {
                     <LatexText expression={`x=${solution.x}, y=${solution.y}`}/>
                     <p>The factor is {solution.k}</p>
                     <p>So the solution to the original equation is:</p>
-                    <LatexText expression={`x=${solution.x}\\cdot${solution.k}=\\textcolor{green}{${solution.x*solution.k}}, y=${solution.y}\\cdot${solution.k}=\\textcolor{green}{${solution.y*solution.k}}`}/>
+                    {solution.x != null && solution.y != null && solution.k != null && (
+                    <LatexText
+                        expression={`x=${solution.x}\\cdot${solution.k}=\\textcolor{green}{${solution.x * solution.k}}, 
+                                    y=${solution.y}\\cdot${solution.k}=\\textcolor{green}{${solution.y * solution.k}}`}
+                    />
+                    )}
                 </div>
                 <div className="mt-5">
                     <p>The general solution is:</p>
-                    <LatexText expression={`(${solution.x*solution.k}-k\\cdot${solution.k*b/solution.gcd}, ${solution.y*solution.k}+k\\cdot${solution.k*a/solution.gcd})`}/>
+                    {solution.x != null && solution.y != null && solution.k != null && solution.gcd != null &&(
+                     <LatexText expression={`(${solution.x*solution.k}-k\\cdot${solution.k*parseInt(b)/solution.gcd}, ${solution.y*solution.k}+k\\cdot${solution.k*parseInt(a)/solution.gcd})`}/>
+                    )}
+
                 </div>
             </div>}
             <div style={{display: showSolution&&!haveSolution ? "block" : "none"}}>

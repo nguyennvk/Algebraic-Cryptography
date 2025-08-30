@@ -3,7 +3,7 @@ import React from "react";
 interface SimpleInputProps {
     name: string;
     value: string;
-    onChange: (value: string) => void;
+    onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function SimpleInput({name, value, onChange}: SimpleInputProps) {
     return (

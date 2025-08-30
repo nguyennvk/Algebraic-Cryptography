@@ -13,6 +13,17 @@ function isDigit(str: string) {
     return /^\d+$/.test(str) || str === "";
 }
 
+interface Step {
+  gcd: number | null;
+  k: number | null;
+  x_k: number | null;
+  x_m: number;
+}
+
+interface ResultData {
+  result: number | null;
+  steps: Step[];
+}
 
 import SimpleInput from "@/components/inputLikeComponents/SimpleInput";
 import { error } from "console";
@@ -23,7 +34,7 @@ export default function PowerModPage() {
     const [equation, setEquation] = useState(false);
     const [showSolution, setShowSolution] = useState(false);
     const [haveSolution, setHaveSolution] = useState(true);
-    const [solution, setSolution] = useState({"steps": null, "result": null});
+    const [solution, setSolution] = useState<ResultData>({"steps": [], "result": null});
     const [error, setError] = useState("");
 
     const handleNChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +131,7 @@ export default function PowerModPage() {
                                 {solution["steps"].map((p, index) => (
                                 <tr key={index}>
                                     <td className="border border-gray-300 px-2 py-1"><span>{<LatexText expression={`x_{${index}}`}></LatexText>}</span> = {p.x_m}</td>
-                                    <td className="border border-gray-300 px-2 py-1"><span>{p.x_k != null && <LatexText expression={`x_{${2**p.k-1}}=`}></LatexText>}</span> {p.x_k}</td>
+                                    <td className="border border-gray-300 px-2 py-1"><span>{p.x_k != null && p.k != null && <LatexText expression={`x_{${2**p.k-1}}=`}></LatexText>}</span> {p.x_k}</td>
                                     <td className="border border-gray-300 px-2 py-1">{p.gcd}</td>
                                 </tr>
                                 ))}
