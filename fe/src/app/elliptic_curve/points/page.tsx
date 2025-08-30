@@ -91,7 +91,7 @@ export default function CarmichaelFuncPage() {
                 <div className="mt-5" style={{display: showSolution&&haveSolution ? "block" : "none"}}>
                     <p>Result: </p>
                     {solution["points"].map((p, index) => (
-                        <p>
+                        <p key={index}>
                             <span key={index}>{<LatexText expression={`(${p})`}></LatexText>}</span>
                         </p>
                     ))}

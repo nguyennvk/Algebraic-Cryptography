@@ -65,7 +65,7 @@ export default function PowerModPage() {
             <div className="flex flex-col items-center">
                 <h1 className="text-4xl">DLP (Discrete Logarithm Problem)</h1>
                 <p className="text-lg mt-4">
-                    Crack DLP problem with not large number using Shank's Babystep-Giantstep algorithm.<br></br>
+                    Crack DLP problem with not large number using Shank&apos;s Babystep-Giantstep algorithm.<br></br>
                     Returning <span>{<LatexText expression="n"></LatexText>}</span> such that <span>{<LatexText expression="g^n \equiv y \text{ mod } p"></LatexText>}</span> and&nbsp;
                     <span>{<LatexText expression="i, j"></LatexText>}</span> as index in Baby and Giant step, respectively.
 

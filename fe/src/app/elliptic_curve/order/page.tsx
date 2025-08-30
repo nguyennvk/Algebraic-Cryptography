@@ -76,7 +76,7 @@ export default function CarmichaelFuncPage() {
     return (
         <div>
             <div className="flex flex-col items-center">
-                <h1 className="text-4xl">Point's order on an Elliptic Curve</h1>
+                <h1 className="text-4xl">Point&apos;s order on an Elliptic Curve</h1>
                 <p className="text-lg mt-4">
                     Return the order of (x, y) on an Elliptic Curve <span>{<LatexText expression="y^2=x^3+ax+b"></LatexText>}</span> lives 
                                         in <span>{<LatexText expression="F_p"></LatexText>}</span> 
