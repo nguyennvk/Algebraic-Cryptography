@@ -17,6 +17,32 @@
     --background: #0a0a0a;
     --foreground: #ffffff;
   }
+  .solve-button{
+    border: 1px solid #ffffff;
+  }
+  .solve-button:hover{
+    box-shadow: rgb(255, 255, 255) 0px 0px 10px;
+  }
+  .dropdown-content{
+    background-color: var(--background);
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+  --background: #ffffff;
+  --foreground: #171717;
+  }
+  .solve-button{
+    border: 1px solid var(--color-gray-300);
+  }
+  .solve-button:hover{
+    box-shadow: rgb(0, 0, 0) 0px 0px 10px;
+  }
+  .dropdown-content{
+    background-color: var(--background);
+  }
 }
 
 body {

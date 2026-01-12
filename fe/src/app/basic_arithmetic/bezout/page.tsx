@@ -111,6 +111,7 @@ export default function BezoutPage() {
                             }
                             })
                         .catch((error) => {
+                            console.log(`${BACKEND_URL}/bezout?a=${a}&b=${b}&c=${c}`)
                             console.error("Error fetching data:", error);
                         });
                         

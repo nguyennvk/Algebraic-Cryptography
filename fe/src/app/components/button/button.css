@@ -1,7 +1,5 @@
 .solve-button{
-    border: 1px solid #ffffff;
     border-radius: 0.5rem;
-    color: white;
     padding: 15px 32px;
     text-align: center;
     display: inline-block;
@@ -12,5 +10,4 @@
 }
 .solve-button:hover{
     color: rgb(49, 148, 255);
-    box-shadow: rgba(255, 255, 255) 0px 0px 10px;
 }
