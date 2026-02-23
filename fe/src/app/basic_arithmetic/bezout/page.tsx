@@ -147,7 +147,7 @@ export default function BezoutPage() {
                 <div className="mt-5">
                     <p>The general solution is:</p>
                     {solution.x != null && solution.y != null && solution.k != null && solution.gcd != null &&(
-                     <LatexText expression={`(${solution.x*solution.k}-k\\cdot${solution.k*parseInt(b)/solution.gcd}, ${solution.y*solution.k}+k\\cdot${solution.k*parseInt(a)/solution.gcd})`}/>
+                     <LatexText expression={`(${solution.x*solution.k}+k\\cdot${parseInt(b)/solution.gcd}, ${solution.y*solution.k}-k\\cdot${parseInt(a)/solution.gcd})`}/>
                     )}
 
                 </div>
